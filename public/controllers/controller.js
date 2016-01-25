@@ -12,6 +12,33 @@ function AppCtrl($scope, $http){
 
 refresh();
 
+var arry = [1,2,3];
 
+$scope.options = arry;
+
+  $scope.removeOption = function() {
+    arry.pop();
+  };
+
+  $scope.addOption = function() {
+    var num=arry.length+1;
+    arry.push(num);
+  };
+	
+
+	$scope.addPoll = function(){
+		console.log($scope.polls);
+		$http.post('/polls', $scope.polls).success(function (response){
+			console.log(response);
+			refresh();
+		});
+	};
+	
+	$scope.removePoll=function(id){
+		console.log(id);
+	  $http.delete('/polls/' + id).success(function(response){
+		 refresh(); 
+	  });
+	}
 };
  

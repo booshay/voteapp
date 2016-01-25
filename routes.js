@@ -10,16 +10,6 @@ module.exports = function (app) {
       res.render('index', { user : req.user });
   });
 
-  app.get('/mypolls', function (req, res) {
-      res.render('mypolls', { user : req.user });
-  });
-  app.get('/polls', function(req, res){
-	console.log('i received a get request');
-	db.polls.find(function(err,docs){
-		console.log(docs);
-		res.json(docs);
-	});
-});
   app.get('/register', function(req, res) {
       res.render('register', { });
   });
@@ -29,7 +19,6 @@ module.exports = function (app) {
           if (err) {
             return res.render("register", {info: "Sorry. That username already exists. Try again."});
           }
-
           passport.authenticate('local')(req, res, function () {
             res.redirect('/');
           });
@@ -37,7 +26,7 @@ module.exports = function (app) {
   });
 
   app.get('/login', function(req, res) {
-      res.render('login', { user : req.user });
+      res.render('login', { user : req.user, id : req._id});
   });
 
   app.post('/login', passport.authenticate('local'), function(req, res) {
@@ -48,6 +37,33 @@ module.exports = function (app) {
       req.logout();
       res.redirect('/');
   });
+
+  app.get('/mypolls', function (req, res) {
+      res.render('mypolls', { user : req.user });
+  });
+
+  app.get('/polls', function(req, res){
+	console.log('i received a get request');
+	db.polls.find(function(err,docs){
+		console.log(docs);
+		res.json(docs);
+	});
+});
+
+app.post('/polls', function(req, res){
+	console.log(req.body);
+	db.polls.insert(req.body, function(err, doc){
+		res.json(doc);
+	});
+});
+
+app.delete('/polls/:id', function(req,res){
+	var id=req.params.id;
+	console.log(id);
+	db.polls.remove({_id: mongojs.ObjectId(id)}, function(err, doc ){
+		res.json(doc);
+	});
+});
 
   app.get('/ping', function(req, res){
       res.send("pong!", 200);
