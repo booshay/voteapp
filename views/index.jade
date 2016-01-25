@@ -37,7 +37,7 @@ html
         input(type='text', ng-model='polls.name')
         p Options
         div(ng-repeat='option in options')
-          input(type='text', ng-model='polls[$index]')
+          input(type='text', ng-model='polls.option[$index]')
         br
         button.btn.btn-primary(ng-click='removeOption()')  Less Options 
         button.btn.btn-primary(ng-click='addOption()') More Options
