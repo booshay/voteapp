@@ -1,0 +1,39 @@
+!!! 5
+html
+  head
+    title= title
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    link(href='/css/bootstrap.min.css', rel='stylesheet', media='screen')
+  body
+    if (!user)
+      a(href="/login") Login
+      br
+      a(href="/register") Register
+    if (user)
+      nav.navbar.navbar-inverse.navbar-fixed-top
+        .container.topnav
+        .navbar-header
+        button.navbar-toggle(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
+        h4(style='color:white;text-transform:uppercase') Welcome #{user.username}
+        div.text-primary 
+          a(href='/') 
+            button.btn-primary Home
+          a(href='/mypolls')  
+            button.btn-primary My-Polls
+          a(href='/logout')  
+            button.btn-primary Logout  
+      br
+      br
+      br
+      .container(ng-app='', ng-controller='AppCtrl')
+        table.table
+          tr
+            td Name
+            td DB ID#
+          tr(ng-repeat='data in data')
+            td
+              button.btn.btn-warning(ng-click='removePoll(data._id)') Remove
+              | {{data.name}}
+            td {{data._id}}
+    script(src='controllers/controller.js')
+    script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.28/angular.min.js')

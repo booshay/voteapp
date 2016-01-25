@@ -1,5 +1,8 @@
 var passport = require('passport');
 var Account = require('./models/account');
+var mongojs=require('mongojs');
+var db=mongojs('polls',['polls']);
+var path = require('path');
 
 module.exports = function (app) {
     
@@ -7,6 +10,16 @@ module.exports = function (app) {
       res.render('index', { user : req.user });
   });
 
+  app.get('/mypolls', function (req, res) {
+      res.render('mypolls', { user : req.user });
+  });
+  app.get('/polls', function(req, res){
+	console.log('i received a get request');
+	db.polls.find(function(err,docs){
+		console.log(docs);
+		res.json(docs);
+	});
+});
   app.get('/register', function(req, res) {
       res.render('register', { });
   });
