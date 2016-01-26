@@ -14,7 +14,7 @@ html
         .container.topnav
         .navbar-header
         button.navbar-toggle(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
-        h4(style='color:white;text-transform:uppercase') Welcome #{user.username}
+        h4(style='color:white;text-transform:uppercase') Welcome #{user.username} 
         div.text-primary 
           a(href='/') 
             button.btn-primary Home
@@ -36,8 +36,8 @@ html
         p Name your poll.
         input(type='text', ng-model='polls.name')
         p Options
-        div(ng-repeat='option in options')
-          input(type='text', ng-model='polls.option[$index]')
+        div(ng-repeat="option in options")
+          input(type='text', ng-model='polls[$index]')
         br
         button.btn.btn-primary(ng-click='removeOption()')  Less Options 
         button.btn.btn-primary(ng-click='addOption()') More Options
