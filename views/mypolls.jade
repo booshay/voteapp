@@ -28,13 +28,14 @@ html
       .container(ng-app='', ng-controller='AppCtrl')
         table.table
           tr
+            td Remove
             td Name
             td DB ID#
-            td Poll Name
+            td User's ID
           tr(ng-repeat="data in data")
             td
               button.btn.btn-warning(ng-click='removePoll(data._id)') Remove
-              | {{data.data.name}}
+            td {{data.data.name}}
             td {{data._id}}
             td {{data.user}}
     script(src='controllers/controller.js')

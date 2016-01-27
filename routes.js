@@ -41,10 +41,12 @@ module.exports = function (app) {
   app.get('/mypolls', function (req, res) {
       res.render('mypolls', { user : req.user });
   });
-//add filter here by user._id
+
+
+
   app.get('/polls', function(req, res){
 	console.log('i received a get request');
-	db.polls.find(function(err,docs){
+	db.polls.find({user:req.user._id}, function(err,docs){
 		console.log(docs);
 		res.json(docs);
 	});
