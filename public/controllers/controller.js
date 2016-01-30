@@ -39,6 +39,15 @@ $scope.options = arry;
 	  $http.delete('/polls/' + id).success(function(response){
 		 refresh(); 
 	  });
-	}
+	};
+	
+	$scope.votePoll=function(id){
+	
+		$http.get('/vote/'+id).success(function(response){
+		$scope.votedata=response;
+			console.log(response);
+		});
+	};
+	
 };
  

@@ -67,6 +67,20 @@ app.delete('/polls/:id', function(req,res){
 	});
 });
 
+app.get('/vote/:id', function(req, res){
+    var id=req.params.id;
+    db.polls.find({_id: mongojs.ObjectId(id)}, function(err,doc){
+    res.json(doc);
+    console.log(doc);   
+   
+    });
+});
+
+app.get('/vote', function(req, res){
+    res.render('vote');   
+});
+
+
   app.get('/ping', function(req, res){
       res.send("pong!", 200);
   });

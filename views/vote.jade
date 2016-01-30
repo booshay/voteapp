@@ -1,0 +1,17 @@
+!!! 5
+html
+  head
+    title= title
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    link(href='/css/bootstrap.min.css', rel='stylesheet', media='screen')
+  body
+    .container(ng-app='', ng-controller='AppCtrl')
+      lable Enter poll ID here to vote
+      input(type='text', ng-model='pollID')
+      button.btn.btn-success(ng-click='votePoll(pollID)') Vote
+      br
+      {{votedata}}
+      
+  script(src='../controllers/controller.js')
+  script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js')
+  script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.28/angular.min.js')
