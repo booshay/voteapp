@@ -43,14 +43,13 @@ $scope.options = arry;
 	
 	$scope.votePoll=function(id){
 			$http.get('/vote/'+id).success(function(response){
-		  $scope.votedata=response[0];
-	  	console.log(response);
+     	    $scope.votedata=response[0];
+            $scope.items=response[0].data;
 		});
 	};
 	
-		$scope.votefor=function(){
-		
-	  	console.log("working");
+		$scope.votefor=function(chosen){
+ 	  	console.log(chosen);
 		
 	};
 	
