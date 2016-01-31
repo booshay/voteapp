@@ -44,8 +44,9 @@ $scope.options = arry;
 	$scope.votePoll=function(id){
 	
 		$http.get('/vote/'+id).success(function(response){
-		$scope.votedata=response;
-			console.log(response);
+		
+		  $scope.votedata=response[0];
+	  	console.log(response);
 		});
 	};
 	
