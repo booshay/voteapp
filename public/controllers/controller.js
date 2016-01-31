@@ -42,12 +42,16 @@ $scope.options = arry;
 	};
 	
 	$scope.votePoll=function(id){
-	
-		$http.get('/vote/'+id).success(function(response){
-		
+			$http.get('/vote/'+id).success(function(response){
 		  $scope.votedata=response[0];
 	  	console.log(response);
 		});
+	};
+	
+		$scope.votefor=function(){
+		
+	  	console.log("working");
+		
 	};
 	
 };
