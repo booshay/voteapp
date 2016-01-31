@@ -3,9 +3,12 @@ var Account = require('./models/account');
 var mongojs=require('mongojs');
 var db=mongojs('polls',['polls']);
 var path = require('path');
+var bodyParser=require('body-parser');
+
 
 module.exports = function (app) {
-    
+    app.use(bodyParser.json());
+
   app.get('/', function (req, res) {
       res.render('index', { user : req.user});
   });
@@ -79,6 +82,14 @@ app.get('/vote/:id', function(req, res){
 app.get('/vote', function(req, res){
     res.render('vote');   
 });
+
+app.put('/vote/:id', function(req,res){ // getting info needed, just need to update DB, counting votes-don't update data field, create new field maybe
+ var id=req.params.id;
+ var item=req.body.opt;
+     console.log('id='+id);
+     console.log('please='+item);
+   res.send('ok')
+ });
 
 
   app.get('/ping', function(req, res){

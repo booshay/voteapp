@@ -11,7 +11,7 @@ html
     br
     .container(ng-app='', ng-controller='AppCtrl')
       lable Enter poll ID here to vote
-      input(type='text', ng-model='pollID', value='56ae62568eb3f5a81ec67345')
+      input(type='text', ng-model='pollID', id='idNum', value='56ae62568eb3f5a81ec67345')
       button.btn.btn-success(ng-click='votePoll(pollID)') Vote
       br
       .container.text-center

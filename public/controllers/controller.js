@@ -48,9 +48,11 @@ $scope.options = arry;
 		});
 	};
 	
-		$scope.votefor=function(chosen){
- 	  	console.log(chosen);
-		
+	$scope.votefor=function(chosen){
+ 	  	var id=document.getElementById('idNum').value;
+        $http.put('/vote/'+ id, {opt:chosen}).success(function(){
+          console.log('updated');
+        });
 	};
 	
 };
